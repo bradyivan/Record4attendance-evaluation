@@ -2,7 +2,7 @@
 
 Course Work. 
 
-Web Programming course with JQuery.
+Web Programming course with JQuery (University of Camaguey).
 
 Register for attendance and evaluation of students. 
 
