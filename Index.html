@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form gallery - jQuery Mobile Demos</title>
+
+    <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">    
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="js/jquery.js"></script>    
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/dist/jspdf.debug.js"></script>    
+    <script type="text/javascript" src="js/printpdf.js"></script>
+    <script type="text/javascript" src="js/cp.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Comienzo de la primera pagina -->
+<div data-role="page" id="index">
+    <div data-role="header"  data-position="fixed">
+        <h1>Carga del listado</h1>
+        <a href="#index">Inicio</a>
+        <a href="#contacto">Contacto</a>
+        <br>
+        <div data-role="navbar">
+            <ul>                
+                <li><a href="#pase_lista" id="nav2">Pase de lista</a></li>
+                <li><a href="#lista" id="nav3">listado de asistencia</a></li>
+                <li><a href="#evaluacion" id="nav4">Evaluacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <div role="main" class="io-content">
+        <form action="#" method="get">
+            <label for="asignatura">Nombre de la asignatura:</label>
+            <input type="text" name="asignatura" id="asignatura" placeholder="Asignatura" value="">            
+
+            <label for="tipo_clase">Tipo de clase:</label>
+            <select name="tipo_clase" id="tipo_clase">
+                <option value="Conf">Conferencia</option>
+                <option value="CP">Clase Practica</option>
+                <option value="Lab">Laboratorio</option>
+                <option value="Sem">Seminario</option>
+            </select>
+                        
+            <br>
+            <div id="select_grupo">
+                <input type="file" name="files[]" id="files" multiple />
+                <output id="list"></output>
+            </div>
+        </form>
+        <br>
+        <div id="configuracion" data-role="collapsible">
+            <form>
+                <label for="profesor">Nombre del profesor:</label>
+                <input type="text" name="profesor" id="profesor" placeholder="nombre del profesor" value="">
+            </form>
+            <h3>Parametros constantes</h3>
+        </div>
+    </div>
+    <div data-role="footer"  data-position="fixed">
+        <h4>&copy; BlackHole 2021</h4>
+        <a href="#confirmar" class="ui-btn-right" id="imprimir1" data-transition="flip" data-origen="#index" data-position="fixed">Imprimir Registro</a>
+        <br>
+    </div>
+</div>
+<!-- /Fin de la pagina Index-->
+<!-- Comienzo de la pagina Pase de lista-->
+<div data-role="page" id="pase_lista">
+    <div data-role="header"  data-position="fixed">
+        <h1>Pase de lista:</h1>
+        <a href="#index">Inicio</a>
+        <a href="#contacto">Contacto</a>
+        <br>
+        <div data-role="navbar">
+            <ul>                
+                <li><a href="#pase_lista" class="ui-btn-active" id="nav22">Pase de lista</a></li>
+                <li><a href="#lista" id="nav32">listado de asistencia</a></li>
+                <li><a href="#evaluacion" id="nav42">Evaluacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <div role="main" class="io-content">
+        <div id="asistencia">
+            <h1 class="ui-btn">Iniciar pase de lista</h1>
+            <div id="formulario_lista">
+            <form id="formulario_asistencia" action="" method="post">
+                <fieldset>
+                    <legend> Estudiante actual:</legend>
+                    <h3>
+                    <ul id="estudiante_lista">
+                        <li class="actual"> </li>
+                    </ul>
+                    </h3>
+                    <br>
+                    <input type="button" id="Presente" value="Presente" />
+                    <input type="button" id="Ausente" value="Ausente" />
+                </fieldset>
+            </form>
+            </div>
+        </div>
+        <br>
+        <div id="listado_estudiantes">
+            <h4>Estudiantes</h4>
+            <ol id="estudiantes5to" data-role="listview" data-inset="true">
+                
+            </ol>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h4>&copy; BlackHole 2021</h4>
+        <a href="#confirmar" class="ui-btn-right" id="imprimir2"  data-transition="flip" data-origen="#pase_lista">Imprimir Registro</a>
+        <br>
+    </div>
+</div>
+<!-- /Fin de la pagina Pase de Lista-->
+<!-- Comienzo de la pagina listado de asistencia-->
+<div data-role="page" id="lista">
+    <div data-role="header"  data-position="fixed">
+        <h1>Listado de asistencia</h1>
+        <a href="#index">Inicio</a>
+        <a href="#contacto">Contacto</a>
+        <br>
+        <div data-role="navbar">
+            <ul>                
+                <li><a href="#pase_lista" id="nav23">Pase de lista</a></li>
+                <li><a href="#lista" class="ui-btn-active" id="nav33">listado de asistencia</a></li>
+                <li><a href="#evaluacion" id="nav43">Evaluacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <div role="main" class="io-content">
+        <div id="estudiantes_presentes">
+            <h4>Estudiantes Presentes</h4>
+            <ol id="presentes" data-role="listview" data-inset="true"> 
+
+            </ol>
+        </div>
+        <br>
+        <div id="estudiantes_tarde">
+            <h4 id="incorporados_toggle" >Estudiantes Incorporados</h4>
+            <ol id="incorporados" data-role="listview" data-inset="true">
+                
+            </ol>
+        </div>
+        <br>
+        <div id="estudiantes_ausentes">
+            <h4 id="ausente_toggle" >Estudiantes Ausentes</h4>
+            <ol id="ausentes" data-role="listview" data-inset="true">
+                
+            </ol>
+        </div>
+        
+    </div>
+    <div data-role="footer"  data-position="fixed">
+        <h4>&copy; BlackHole 2021</h4>
+        <a href="#confirmar" class="ui-btn-right" id="imprimir3"  data-transition="flip" data-origen="#lista">Imprimir Registro</a>
+        <br>
+    </div>    
+</div>
+<!-- /Fin de la pagina Listado de asistencia-->
+<!-- Comienzo de la pagina listado de evaluacion-->
+<div data-role="page" id="evaluacion">
+    <div data-role="header"  data-position="fixed">
+        <h1>Listado de evaluacion</h1>
+        <a href="#index">Inicio</a>
+        <a href="#contacto">Contacto</a>
+        <br>
+        <div data-role="navbar">
+            <ul>                
+                <li><a href="#pase_lista" id="nav24">Pase de lista</a></li>
+                <li><a href="#lista" id="nav34">listado de asistencia</a></li>
+                <li><a href="#evaluacion" class="ui-btn-active" id="nav44">Evaluacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <div role="main" class="io-content">
+        <div>
+            <h4>Listado de Estudiantes:</h4>
+            <ol id="list_eval" data-role="listview" data-inset="true">
+                
+            </ol>
+        </div>
+        <br>
+                
+    </div>
+    <div data-role="footer"  data-position="fixed">
+        <h4>&copy; BlackHole 2021</h4>
+        <a href="#confirmar" class="ui-btn-right" id="imprimir4"  data-transition="flip" data-origen="#evaluacion">Imprimir Registro</a>
+        <br>
+    </div>    
+</div>
+<!-- /Fin de la pagina Listado de asistencia-->
+<!-- Comienzo de la pagina Contacto-->
+<div data-role="page" id="contacto">
+    <div data-role="header"  data-position="fixed">
+        <h1>Listado de asistencia</h1>
+        <a href="#index">Inicio</a>
+        <a href="#contacto">Contacto</a>
+        <br>
+        <div data-role="navbar">
+            <ul>                
+                <li><a href="#pase_lista" id="nav25">Pase de lista</a></li>
+                <li><a href="#lista"  id="nav35">listado de asistencia</a></li>
+                <li><a href="#evaluacion" id="nav45">Evaluacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div>
+        <h4>¿Quienes somos?</h4>
+        <p>
+            Nos dedicamos a facilitar su trabajo.
+        </p>
+    </div>
+    <div role="main" class="io-content">
+        <div id="quienes_somos" data-role="collapsible">
+           <h4>Consejos para el uso de la aplicacion</h4> 
+            <p>
+                Para comenzar a utilizar la aplicacion debe tener un archivo con extension .txt (nombre_del_archivo.txt). A este archivo lo denominaremos archivo de salida. Le sugerimos que el nombre del archivo sea lo mas descriptivo posible para Ud. Por ejemplo: Informatica2do.txt.                 
+            </p>
+            <p>
+                El contenido del archivo de entrada debe ir de la siguiente forma:
+            </p>
+            <p>
+                 nombre_y_apellidos_1erEstudiante, nombre_y_apellidos_2do_Estudiante, ... 
+            </p>
+            <p>
+                Nota: le sugerimos que preceda el primer nombre con un espacio, para mayor uniformidad.
+            </p>
+            <p>
+                El fichero de salida es un fichero pdf, su nombre sera el mismo que el del fichero de entrada pero seguido con la fecha del dia: nombre_del_archivo_dia_mes_año.pdf. 
+            </p>
+            <p>
+                La aplicacion se encuentra en fase de prueba, cualquier sugerencia sera bien aceptada. 
+            </p>
+        </div>
+        <div id="info_cont" data-role="collapsible">
+            <h4>Informaci&oacute;n de contacto:</h4>
+            <p>
+                <a href="mailto: bradyjimenez76@gmail.com">Braddy I. Jimenez Morales</a>
+            </p>
+        </div>        
+    </div>
+    <div data-role="footer"  data-position="fixed">
+        <h4>&copy; BlackHole 2021</h4>
+    </div>    
+</div>
+<!-- /Fin de la pagina Contacto-->
+<!-- Dialogo salvar pdf-->
+<div data-role="page" id="confirmar" data-dialog="true">
+    <div data-role="header">
+        <h2>Confirmar</h2>        
+    </div>
+    <div data-role="content">
+        <h3 id="mensaje_salvar"></h3>
+        <a href="javascript:salvarPDF()" id="salvar" data-role="button">Guardar</a>
+        <a href="javascript:cancelarPDF()" id="cancelar" data-role="button" data-rel="back">Cancelar</a>
+    </div>    
+</div>
+<!-- /Fin del dialogo salvar PDF-->
+<!-- Dialogo Evaluacion-->
+<div data-role="page" id="evaluar" data-dialog="true">
+    <div data-role="header">
+        <h2>Evaluacion</h2>        
+    </div>
+    <div data-role="content">
+        <h3 id="estud_eval"></h3>
+        <div data-role="controlgroup" data-type="horizontal" align="center">
+            <a href="#evaluacion" id="5" data-role="button">5 ptos</a>
+            <a href="#evaluacion" id="4" data-role="button">4 ptos</a>
+            <a href="#evaluacion" id="3" data-role="button">3 ptos</a>
+            <a href="#evaluacion" id="2" data-role="button">2 ptos</a>
+        </div>        
+    </div>    
+</div>
+<!-- /Fin del dialogo Evaluacion-->
+<script type="text/javascript">    
+
+    window.addEventListener("beforeunload", function(){
+        let savedPDF = $('#confirmar').data('saved');
+        if (!savedPDF){
+             let fname = $('#files').data('fname'); 
+             if (fname != 'undefined')
+                demoTwoPageDocument(fname);             
+        } else {
+            return
+        };      
+        return  
+    });
+    
+</script>
+</body>
+</html>
